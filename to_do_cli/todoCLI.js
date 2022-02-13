@@ -1,26 +1,43 @@
 const readline = require("readline")
-
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-    prompt: "> "
+    prompt: "> " // the shape of the prompt > also we can put %
 });
 
+function menuPrompt(){
+    const theMenu = ( "(v) View.(n) New.(cX) Complete.(dX) Delete,(q) Quit")
+    console.log(theMenu);
+    rl.prompt()
+}
 
-const theMenu = ( "(v) View.(n) New.(cX) Complete.(dX) Delete,(q) Quit")
+function showList(){
+    theList.forEach((entry, index) => {
+        let status = entry[0] === true ? "✔": " ";
+        console.log(`${index} [${status}] ${entry[1]}`)
+    });
+}
 
 
 console.log("Welcome to Todo CLI!\n--------------------");
-console.log(theMenu);
-
-rl.prompt();
+menuPrompt();
 rl.on("line", (action) => {
 
   if (action === "q") {
     rl.close();
-    
-  } else {
-    console.log(theMenu);
-    rl.prompt();
-  }
+    return;
+  } else if (action === "v") {
+    showList()
+  } 
+  menuPrompt()
 });
+
+const theList = [
+    [true, "Take out the trash"], 
+    [true, "Buy toothpaste"],
+    [false, "Buy Snickerdoodles"],
+    [false, "Fix the climate"],
+    [false, "Find a cure for aging"]
+];
+
+

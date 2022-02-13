@@ -1,4 +1,3 @@
-const { title } = require("process");
 const readline = require("readline")
 
 const rl = readline.createInterface({
@@ -6,7 +5,8 @@ const rl = readline.createInterface({
     output: process.stdout,
     prompt: "> " // the shape of the prompt > also we can put %
 });
-
+ 
+const theList = [];
 
 
 function menuPrompt(){
@@ -17,10 +17,16 @@ function menuPrompt(){
 
 
 function showList(){
-    theList.forEach((entry, index) => {
+        if (theList.length <= 0) {
+            console.log("List is empty...");
+
+        } else {
+        theList.forEach((entry, index) => {
         let status = entry[0] === true ? "✔": " ";
         console.log(`${index} [${status}] ${entry[1]}`)
     });
+  }
+        
 }
 
 
@@ -86,13 +92,3 @@ rl.on("line", (input) => {
 }
 
 });
-
-const theList = [
-    [true, "Take out the trash"], 
-    [true, "Buy toothpaste"],
-    [false, "Buy Snickerdoodles"],
-    [false, "Fix the climate"],
-    [false, "Find a cure for aging"]
-];
-
-

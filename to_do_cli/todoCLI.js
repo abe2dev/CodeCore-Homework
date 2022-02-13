@@ -1,15 +1,20 @@
+const { title } = require("process");
 const readline = require("readline")
+
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
     prompt: "> " // the shape of the prompt > also we can put %
 });
 
+
+
 function menuPrompt(){
     const theMenu = ( "(v) View.(n) New.(cX) Complete.(dX) Delete,(q) Quit")
     console.log(theMenu);
     rl.prompt()
 }
+
 
 function showList(){
     theList.forEach((entry, index) => {
@@ -19,17 +24,41 @@ function showList(){
 }
 
 
+function newEntry(entry = "") {
+    if (entry === "") {
+        console.log("What?");
+        rl.prompt()
+    } else {
+        theList.push([false, entry])
+    }
+
+}
+
+
 console.log("Welcome to Todo CLI!\n--------------------");
 menuPrompt();
-rl.on("line", (action) => {
 
-  if (action === "q") {
+let curCmd = "";
+rl.on("line", (input) => {
+
+  if (input === "q") {
     rl.close();
     return;
-  } else if (action === "v") {
+
+  } else if (input === "v") {
     showList()
-  } 
-  menuPrompt()
+    menuPrompt();
+
+  } else if (input === "n"){
+    curCmd = "n";
+    newEntry();
+   
+  } else if ( curCmd = "n"){
+      newEntry(input)
+      curCmd = "";
+      menuPrompt();
+  }
+
 });
 
 const theList = [

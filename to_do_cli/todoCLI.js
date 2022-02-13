@@ -34,6 +34,14 @@ function newEntry(entry = "") {
 
 }
 
+function completeItem(num) {
+    if (num >= 0 && num < theList.length) {
+       theList[num][0] = true;
+       console.log(`Completed "${theList[num][1]}"`); 
+    }
+   
+}
+
 
 console.log("Welcome to Todo CLI!\n--------------------");
 menuPrompt();
@@ -53,9 +61,14 @@ rl.on("line", (input) => {
     curCmd = "n";
     newEntry();
    
-  } else if ( curCmd = "n"){
+  } else if ( curCmd === "n"){
       newEntry(input)
       curCmd = "";
+      menuPrompt();
+
+  } else if (input[0] === "c") {
+      let num = parseInt(input.slice(1))
+      completeItem(num);
       menuPrompt();
   }
 

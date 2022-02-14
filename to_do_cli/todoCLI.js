@@ -56,10 +56,19 @@ function saveList(filename = "") {
     rl.prompt();
   } else {
     fs.writeFileSync(`./${filename}`, JSON.stringify(theList));
-      console.log(`List saved to "${filename}"`);
+    console.log(`List saved to "${filename}"`);
   }
 }
 
+if (process.argv.length === 3) {
+  const inputFilename = process.argv[2];
+  fs.readFile(inputFilename, "utf8", (err, data) => {
+    const todos = JSON.parse(data);
+    todos.forEach((todo) => {
+      theList.push(todo);
+    });
+  });
+}
 console.log("Welcome to Todo CLI!\n--------------------");
 menuPrompt();
 
@@ -92,8 +101,7 @@ rl.on("line", (input) => {
     saveList();
   } else if (curCmd === "s") {
     if (input === "") {
-      input = "myTodos.JSON"
-      
+      input = "myTodos.JSON";
     }
     saveList(input);
     curCmd = "";

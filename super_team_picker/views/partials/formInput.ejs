@@ -1,0 +1,27 @@
+<div>
+    <input
+      type="text"
+      name="name"
+      placeholder="What is your cohort name?"
+      value="<%= cohort ? cohort.name : '' %>"
+    />
+  </div>
+  <div>
+    <input
+      type="url"
+      name="logoUrl"
+      placeholder="e.g. http://imgurl.com/myPic.jpg"
+      value="<%= cohort ? cohort.logoUrl : '' %>"
+    />
+  </div>
+  <div>
+    <textarea
+      name="members"
+      placeholder="comma separated members names"
+      cols="60"
+      rows="5"
+    >
+    <%- cohort ? cohort.members : '' %>
+    </textarea>
+  </div>
+  

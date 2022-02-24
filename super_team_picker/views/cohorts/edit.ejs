@@ -1,0 +1,6 @@
+<h1>Edit Cohort</h1>
+        <form action="/cohorts/<%- cohort.id %>" method="POST">
+            <input type="hidden" name="_method" value="PATCH">
+            <%- include("../partials/formInput.ejs") %>
+            <input type="submit" value="Edit Cohort">
+        </form>

@@ -1,0 +1,13 @@
+<h1>Cohorts Index</h1>
+<div>
+  <% for (let cohort of cohorts) { %>
+
+  <div>
+    <a href="/cohorts/<%- cohort.id %>">
+      <h5><%- cohort.name %></h5>
+    </a>
+    <img src="<%- cohort.logoUrl %>" alt="logo">
+    <p><%- cohort.members %></p>
+  </div>
+  <% } %>
+</div>

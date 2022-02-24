@@ -1,0 +1,16 @@
+    <div>
+        
+        <div>
+            <h5><%- cohort.name %></h5>
+            <img src="<%- cohort.logoUrl %> " alt="logo">
+            <p>
+                <%- cohort.members %>
+
+            </p>
+            <a href="/cohorts/<%- cohort.id %>/edit ">Edit</a>
+            <form action="/cohorts/<%- cohort.id %>" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+    </div>

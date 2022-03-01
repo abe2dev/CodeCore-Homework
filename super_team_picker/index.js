@@ -3,7 +3,11 @@ const app = express();
 const methodOverride = require("method-override");
 const logger = require("morgan");
 const cohortsRouter = require("./routes/cohorts");
+const path = require("path");
 
+app.use(logger("dev"));
+
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
@@ -15,14 +19,12 @@ app.use(
   })
 );
 
-app.use(logger("dev"));
+app.set("view engine", "ejs");
+app.set("views", "views");
 
 app.get("/", (request, response) => {
   response.redirect("/cohorts");
 });
-
-app.set("view engine", "ejs");
-app.set("views", "views");
 
 app.use("/cohorts", cohortsRouter);
 

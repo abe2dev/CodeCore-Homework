@@ -9,7 +9,7 @@ exports.seed = async function(knex) {
   const cohorts = Array.from({length:10}).map(() => {
     return {
       'name': faker.name.jobTitle(),
-      'members': faker.lorem.words(faker.datatype.number({ min: 15, max: 25 })).split(" ").join(","),
+      'members': faker.lorem.words(faker.datatype.number({ min: 15, max: 25 })).split(" ").join(", "),
       'logoUrl': faker.image.abstract(50, 50, true)
     }
 

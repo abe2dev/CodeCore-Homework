@@ -5,13 +5,13 @@
 
     <div class="form-check">
       <input class="form-check-input" type="radio" name="method"
-      value="TeamCount" <% if (method && method == "TeamCount" ) { %> checked <%
+      id="TeamCount" value="TeamCount" <% if (method && method == "TeamCount" ) { %> checked <%
       } %> />
       <label class="form-check-label" for="TeamCount"> Team Count </label>
     </div>
     <div class="form-check">
       <input class="form-check-input" type="radio" name="method"
-      value="NumberPerTeam" <% if (method && method == "NumberPerTeam" ) { %>
+      id="NumberPerTeam" value="NumberPerTeam" <% if (method && method == "NumberPerTeam" ) { %>
       checked <% } %> />
       <label class="form-check-label" for="NumberPerTeam">
         Number Per Team
@@ -50,3 +50,4 @@
   </table>
   
 <% } %> 
+

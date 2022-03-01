@@ -37,7 +37,7 @@ function shuffle(array) {
   return array;
 }
 
-function assignTeams(method, quantity = 0, members) {
+function assignTeams(method, quantity, members) {
   let names = members.split(",");
 
   names.forEach((name, index, names) => {
@@ -45,6 +45,7 @@ function assignTeams(method, quantity = 0, members) {
   });
 
   names = shuffle(names);
+
   let teams = [];
   if (method == "TeamCount") {
     while (names.length > 0) {
@@ -53,12 +54,13 @@ function assignTeams(method, quantity = 0, members) {
       }
     }
   } else if (method == "NumberPerTeam") {
-    for (let j = 0; names.length > 0; j++) {
+    for (let j = 0; names.length > 0 && quantity > 0; j++) {
       for (let i = 0; i < quantity && names.length > 0; i++) {
         teams[j] = teams[j] ? teams[j] + ", " + names.pop() : names.pop();
       }
     }
   }
+  console.log(teams)
   return teams;
 }
 
@@ -70,13 +72,19 @@ router.get("/:id", (req, res) => {
       if (!cohort) {
         res.send("No cohort found");
       } else {
+        let quantity = parseInt(req.query.quantity, 10);
+        if (isNaN(quantity)|| quantity == "") {
+          quantity = 0
+        }
+        let method = req.query.method? req.query.method: "";
+        console.log(req.query.quantity, req.query.method)
         res.render("cohorts/show", {
           cohort: cohort,
-          method: req.query.method,
-          quantity: req.query.quantity,
+          method: method,
+          quantity: quantity,
           teams: assignTeams(
-            req.query.method,
-            req.query.quantity,
+            method,
+            quantity,
             cohort.members
           ),
         });

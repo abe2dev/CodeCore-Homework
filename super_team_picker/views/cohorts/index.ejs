@@ -1,0 +1,22 @@
+<%- include("../partials/header") %>
+<main class="px-3">
+<% cohorts.forEach(cohort => { %>
+  <div class="card mb-3">
+  <div class="card-body">
+    <div class="d-flex align-item-center">
+      <% if (cohort.logoUrl) { %>
+        <img src="<%- cohort.logoUrl %>"
+        width="35px"
+        height="35px" class="rounded-circle">
+        <% } %>
+        <h3 class="card-title"><%- cohort.name %></h3>
+    </div>
+ <p class=“card-text”><%- cohort.members %> </p>
+ <a href="/cohorts/<%- cohort.id %>" class="btn btn-primary" role="button">Show Cohort</a>
+</div>
+</div>
+<% }) %>
+</main>
+<%- include("../partials/footer") %>
+
+

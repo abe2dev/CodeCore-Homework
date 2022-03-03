@@ -1,0 +1,30 @@
+<%- include("../partials/header")%>
+
+<main class="px-4">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h1 class="card-title"><%- cohort.name %></h1>
+      <p class="“card-text”"><%- cohort.members %></p>
+
+      <div class="d-flex">
+        <a
+          href="/cohorts/<%- cohort.id %>/edit "
+          class="btn btn-outline-primary"
+          role="button"
+          >Edit</a
+        >
+
+        <form action="/cohorts/<%- cohort.id %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE" />
+          <button type="submit" class="btn btn-outline-danger mx-1">
+            Delete
+          </button>
+        </form>
+      </div>
+    </div>
+    
+    <%- include("../partials/partial/team_assignment") %>
+  </div>
+</main>
+
+<%- include("../partials/footer")%>

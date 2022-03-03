@@ -46,9 +46,10 @@ function assignTeams(method, quantity, members) {
 
   names = shuffle(names);
 
+
   let teams = [];
   if (method == "TeamCount") {
-    while (names.length > 0) {
+    while (names.length > 0 && quantity > 0) {
       for (let i = 0; i < quantity && names.length > 0; i++) {
         teams[i] = teams[i] ? teams[i] + ", " + names.pop() : names.pop();
       }
@@ -60,7 +61,6 @@ function assignTeams(method, quantity, members) {
       }
     }
   }
-  console.log(teams)
   return teams;
 }
 
@@ -77,7 +77,6 @@ router.get("/:id", (req, res) => {
           quantity = 0
         }
         let method = req.query.method? req.query.method: "";
-        console.log(req.query.quantity, req.query.method)
         res.render("cohorts/show", {
           cohort: cohort,
           method: method,
